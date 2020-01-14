@@ -10,6 +10,7 @@ __pycache__/
 AnnualReports/*
 pickle/*
 reports/*
+test/*
 
 # Distribution / packaging
 .Python

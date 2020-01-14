@@ -1,4 +1,0 @@
-,company_name,count_tokens,average_sentence_length,percentage_complex_word,positive_score,negative_score,uncertainty_score,constraining_score
-ABN_AMRO_Group_(2018).pdf,ABN_AMRO_Group,106119,106119,0.3049312564196798,834,1401,1728,686
-Acer_(2018).pdf,Acer,89820,89820,0.3275328434647072,684,1134,572,443
-Credit_Suisse_Group_(2018).pdf,Credit_Suisse_Group,234582,234582,0.28046056389663315,1511,3622,3827,1538
