@@ -26,3 +26,11 @@ def removeStopWords(text, stopwords_list):
     text = text.replace("+","")
     return text
 
+def clean_data_dict(dict_data, stopwords):
+    """args: dict_data dict form, stopwords list form """
+    for i in dict_data.keys():
+        text = dict_data[i]
+        text = clean_text(text)
+        text = removeStopWords(text, stopwords)
+        dict_data[i] = text
+    return dict_data

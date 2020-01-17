@@ -2,8 +2,8 @@
 
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem.porter import PorterStemmer
+import textdistance
 
-porter = PorterStemmer()
 
 def read_dictionary(path):
     file = open(path,'r')
@@ -74,4 +74,21 @@ def percentage_complex_word(text):
 def calculate_fog_index(averageSentenceLength, percentageComplexWord):
     fogIndex = 0.4 * (averageSentenceLength + percentageComplexWord)
     return round(fogIndex,3)
+
+
+def calculate_cosine(data_dict, gold_standard_tokens):
+    """"data: type dataframe"""
+    cosine_similarity = []
+    for doc in data_dict.keys():
+        tokens = word_tokenize(doc)
+        cosine_similarity.append(textdistance.cosine.similarity(gold_standard_tokens , tokens))
+    return cosine_similarity
+
+def calculate_entropy(data_dict, gold_standard_tokens):
+    """"data: type dataframe"""
+    entropy_similarity = []
+    for doc in data_dict.keys():
+        tokens = word_tokenize(doc)
+        entropy_similarity.append(textdistance.entropy_ncd.similarity(gold_standard_tokens , tokens))
+    return entropy_similarity
 
