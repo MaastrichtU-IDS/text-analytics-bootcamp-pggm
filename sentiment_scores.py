@@ -1,6 +1,9 @@
 #!/usr/bin/python
 
 from nltk.tokenize import word_tokenize, sent_tokenize
+from nltk.stem.porter import PorterStemmer
+
+porter = PorterStemmer()
 
 def read_dictionary(path):
     file = open(path,'r')
@@ -8,14 +11,20 @@ def read_dictionary(path):
 
 # Generate sentiment scores
 def generate_score(text, list_to_compare):
+    stemmer = PorterStemmer()
     numWords = 0
     tokens = word_tokenize(text)
+    tokens = [stemmer.stem(plural) for plural in tokens]
     for word in tokens:
         if word in list_to_compare:
             numWords  += 1
     
     cumsum = numWords
     return cumsum
+
+# Relative score function
+def relative_score(score, wordcount):
+    return round(score / wordcount,4) if wordcount != 0 else 0
 
 # Calculating polarity score
 def polarity_score(positive_score, negative_score):
@@ -24,19 +33,25 @@ def polarity_score(positive_score, negative_score):
 
 # Counting total words
 def total_word_count(text):
+    stemmer = PorterStemmer()
     tokens = word_tokenize(text)
+    tokens = [stemmer.stem(plural) for plural in tokens]
     return len(tokens)
 
 # Calculating Average sentence length 
 def average_sentence_length(text):
+    stemmer = PorterStemmer()
     sentence_list = sent_tokenize(text)
     tokens = word_tokenize(text)
+    tokens = [stemmer.stem(plural) for plural in tokens]
     average_sent_length = len(tokens) / len(sentence_list) + 0.000001
     return round(average_sent_length)
 
 # Calculating percentage of complex word 
 def percentage_complex_word(text):
+    stemmer = PorterStemmer()
     tokens = word_tokenize(text)
+    tokens = [stemmer.stem(plural) for plural in tokens]
     complexWord = 0
     complex_word_percentage = 0
     
@@ -59,3 +74,4 @@ def percentage_complex_word(text):
 def calculate_fog_index(averageSentenceLength, percentageComplexWord):
     fogIndex = 0.4 * (averageSentenceLength + percentageComplexWord)
     return round(fogIndex,3)
+
