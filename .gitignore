@@ -11,6 +11,7 @@ AnnualReports/*
 pickle/*
 reports/*
 test/*
+AnnualReportsFull/*
 
 # Distribution / packaging
 .Python
